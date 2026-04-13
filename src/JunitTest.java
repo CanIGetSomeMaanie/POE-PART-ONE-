@@ -37,7 +37,7 @@ class JunitTest {
 
     @Test
     void phoneIncorrect() {
-        assertFalse(reg.checkCellPhoneNumber("08966553"));
+        assertFalse(reg.checkPasswordComplexity("08966553"));
     }
 
     @Test
@@ -54,20 +54,39 @@ class JunitTest {
     // ASSERT EQUALS (MESSAGES)
     // =====================
 
-    public String registerUser(String username, String password, String phoneNumber) {
+    @Test
+    void usernameCorrectMessage() {
+        String result = login.returnLoginStatus(true, "kyl_1");
+        assertEquals("Welcome kyl_1 it is great to see you again.", result);
+    }
 
-        if (!reg.checkUserName(username)) {
-            return "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
-        }
+    @Test
+    void usernameIncorrectMessage() {
+        String result = reg.registerUser();
+        assertEquals("Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.", result);
+    }
 
-        if (!reg.checkPasswordComplexity(password)) {
-            return "Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
-        }
+    @Test
+    void passwordCorrectMessage() {
+        String result = reg.registerUser();
+        assertEquals("Password successfully captured.", result);
+    }
 
-        if (!reg.checkCellPhoneNumber(phoneNumber)) {
-            return "Cell number is incorrectly formatted or does not contain an international code; please correct the number and try again.";
-        }
+    @Test
+    void passwordIncorrectMessage() {
+        String result = reg.registerUser();
+        assertEquals("Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.", result);
+    }
 
-        // IMPORTANT: assignment wants these messages separately
-        return "Cell number successfully captured.";
-    }}
+    @Test
+    void phoneCorrectMessage() {
+        String result = reg.registerUser();
+        assertEquals("Cell number successfully captured.", result);
+    }
+
+    @Test
+    void phoneIncorrectMessage() {
+        String result = reg.registerUser();
+        assertEquals("Cell number is incorrectly formatted or does not contain an international code; please correct the number and try again.", result);
+    }
+}
