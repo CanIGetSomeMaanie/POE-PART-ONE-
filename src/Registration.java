@@ -61,6 +61,8 @@ public class Registration {
         }
 
         return "Username successfully captured.\nPassword successfully captured.\nCell phone number successfully added.";
+
+
     }
 
     // getters for login
