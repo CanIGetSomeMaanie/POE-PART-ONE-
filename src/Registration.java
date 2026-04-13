@@ -4,9 +4,12 @@ public class Registration {
 
     Scanner scanner = new Scanner(System.in);
 
+    private String name;
+    private String surname;
     private String username;
     private String password;
     private String phone;
+
 
     // Username check
     public boolean checkUserName(String username) {
@@ -39,6 +42,12 @@ public class Registration {
     // REGISTER METHOD (THIS IS IMPORTANT — RETURNS MESSAGES)
     public String registerUser() {
 
+        System.out.println("Enter first name");
+        name = scanner.nextLine();
+
+        System.out.println("Enter your surname");
+        surname = scanner.nextLine();
+
         System.out.println("Enter username must contain no more than 5 letters and a underscore ");
         username = scanner.nextLine();
 
@@ -58,10 +67,9 @@ public class Registration {
 
         if (!checkCellPhoneNumber(phone)) {
             return "Cell phone number incorrectly formatted or does not contain international code.";
+        } else {
+            return "Username successfully captured.\nPassword successfully captured.\nCell phone number successfully added.";
         }
-
-        return "Username successfully captured.\nPassword successfully captured.\nCell phone number successfully added.";
-
 
     }
 
@@ -70,6 +78,15 @@ public class Registration {
         return username;
     }
 
+
+
     public String getPassword() {
         return password;
-    }}
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+}
+
